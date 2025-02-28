@@ -40,7 +40,9 @@ For local development, you can set environment variables in the `local.settings.
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
-        "SimulatorUrlPrefix": "http://<container-apps-name-for-httpserver>"
+        "SimulatorUrlPrefix": "http://\<container-apps-name-for-httpserver\>",
+        "SimulationId": "1234-5678-9012-3456",
+        "SimulationSchema": "{ 'key': 'value' }"
     }
 }
 ```
