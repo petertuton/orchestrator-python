@@ -70,7 +70,7 @@ async def simulation_loop_event_grid(event: func.EventGridEvent) -> str:
         get_logger().error(f"Error processing Event Grid request: {str(ex)}")
         return ""
 
-@app.route(route="webhook", methods=["POST", "OPTIONS"])
+@app.route(route="SimulationLoopWebhook", methods=["POST", "OPTIONS"])
 async def simulation_loop_webhook(req: func.HttpRequest) -> func.HttpResponse:
     if req.method.upper() == "OPTIONS":
         return func.HttpResponse(
@@ -105,7 +105,7 @@ async def simulation_loop_webhook(req: func.HttpRequest) -> func.HttpResponse:
             mimetype="application/json"
         )
 
-@app.route(route="start", methods=["PUT"])
+@app.route(route="StartSimulation", methods=["PUT"])
 async def start_simulation(req: func.HttpRequest) -> func.HttpResponse:
     logger = get_logger()
     logger.info("Processing Start Simulation request")
@@ -134,7 +134,7 @@ async def start_simulation(req: func.HttpRequest) -> func.HttpResponse:
             mimetype="application/json"
         )
 
-@app.route(route="stop", methods=["PUT"])
+@app.route(route="StopSimulation", methods=["PUT"])
 async def stop_simulation(req: func.HttpRequest) -> func.HttpResponse:
     logger = get_logger()
     logger.info("Processing Stop Simulation request")
