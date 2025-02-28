@@ -1,0 +1,6 @@
+azure-functions
+azure-functions-worker
+azure-eventhub
+azure-eventgrid
+azure-core
+requests
