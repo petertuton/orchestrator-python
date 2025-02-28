@@ -1,15 +1,46 @@
-# Ignore Azurite files
-azurite*
-_blobstorage_
+# Python specific
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env/
+.venv/
+ENV/
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
 
-# Ignore other common files and directories
-.git
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Azure Functions specific
+local.settings.json
+.python_packages/
+.funcignore
+
+# Azure Storage Emulator (Azurite)
+__azurite_db_blob__.json
+__azurite_db_blob_extent__.json
+__azurite_db_table__.json
+__blobstorage__/
+azurite*
+
+# Version control
+.git/
 .gitignore
-.vscode
-bin
-obj
-*.user
-*.suo
-*.csproj.user
-*.csproj.suo
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Misc
 *.log
