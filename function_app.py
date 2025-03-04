@@ -71,7 +71,10 @@ async def simulation_loop_event_grid(event: func.EventGridEvent) -> str:
         return ""
 
 @app.route(route="SimulationLoopWebhook", methods=["POST", "OPTIONS"])
-async def simulation_loop_webhook(req: func.HttpRequest) -> func.HttpResponse:
+@app.event_hub_output(arg_name="eventHubOutput", 
+                     event_hub_name="digital-twin", 
+                     connection="EventHubConnectionString")
+async def simulation_loop_webhook(req: func.HttpRequest, eventHubOutput: func.Out[str]) -> func.HttpResponse:
     if req.method.upper() == "OPTIONS":
         return func.HttpResponse(
             status_code=200,
@@ -92,6 +95,9 @@ async def simulation_loop_webhook(req: func.HttpRequest) -> func.HttpResponse:
         
         cloud_event = CloudEvent.from_json(body)
         results = await process_simulation_event(cloud_event)
+        
+        # Set the Event Hub output
+        eventHubOutput.set(results)
         
         return func.HttpResponse(
             results,
